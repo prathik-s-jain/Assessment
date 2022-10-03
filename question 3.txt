@@ -1,0 +1,276 @@
+
+--------------------------------------------------------------------------------------------------------------------------
+					QUESTION 3A
+package test;
+import java.util.*;
+public class CruiseClass  {
+    public static void main(String[] args) 
+    {
+    MemberType ob;    	
+    	Scanner sc = new Scanner(System.in);
+        
+        Map<Integer,MemberType> mapValue = new HashMap<Integer,MemberType>();
+        
+        System.out.println("Enter the Number of Travelers You want On the Cruise");
+        
+        
+        int num = sc.nextInt();
+        
+        for(int i=1; i<=num; i++) 
+        {
+            mapValue.put(i, new MemberType());
+        }
+        
+        //System.out.println("The Values are: "+mapValue.toString());
+        
+        for(Map.Entry<Integer, MemberType> entry:mapValue.entrySet()){    
+            int key=entry.getKey();  
+            MemberType b=entry.getValue();  
+            System.out.println(key+" Data:");  
+            if (b.memberType==1) 
+            {
+            	System.out.println("Name: " + b.name + "\nAge: " + b.age + "\nMember Type: " + b.memberTypes+"\nFees: "+b.fee+"\n trip name: "+b.tname+"\n id no :"+b.idno);    
+            }
+            else if (b.memberType==2)
+            {
+            	System.out.println("Name: " + b.name + "\nAge: " + b.age + "\nMember Type: " + b.memberTypes+"\nFees: "+b.fee+"\n ph no is : "+b.phno+"\n address is :"+b.address);    
+            }
+            } 
+        
+        System.out.println(MemberType.countMembers());
+        System.out.println(MemberType.price());
+        
+    }
+}
+
+package test;
+import java.util.*;
+public class MemberType {
+    
+    int age,idno;
+    String name;
+    int memberType;
+    String memberTypes,tname,address;
+    static int countCrew,countAdult,countChild;
+    int fee;
+    double phno;
+    
+ //   int collection;
+    
+    Scanner scan = new Scanner(System.in);
+    
+    public MemberType() 
+    {
+        System.out.println("Enter Your Age");
+        this.age=scan.nextInt();
+        System.out.println("Enter Your Name");
+        this.name=scan.next();
+        
+        if(age>20) {
+        
+            System.out.println("Type 1 for Crew Member or 2 for Adults");
+        
+            this.memberType=scan.nextInt();
+        
+        
+    if(memberType==1) 
+        {
+            this.memberTypes="Crew";
+            countCrew++;
+            fee=0;
+            System.out.println("enter the id no");
+            this.idno=scan.nextInt();
+            System.out.println("enter the trip name");
+            this.tname=scan.next();
+            
+        }
+        else if(memberType==2) 
+        {
+            this.memberTypes="Adult";
+            countAdult++;
+            fee=500;
+            System.out.println("enter the ph no :");
+            this.phno=scan.nextDouble();
+            System.out.println("enter address");
+            this.address=scan.next();
+        }
+        }
+                else 
+        {
+            this.memberTypes="Children";
+            countChild++;
+            fee=250;
+        }
+        }
+     public static String countMembers() {
+        
+        return "Number of Crew Members: "+countCrew+"\nNumber of Adults: "+countAdult+"\nNumber of Children: "+countChild;
+    }   
+     public static String price()
+     {
+    	int collection=(250*countChild+500*countAdult);
+    	 return "total collection :"+collection;
+     }
+}	
+						
+						TEST CASES
+Enter the Number of Travelers You want On the Cruise
+3
+Enter Your Age
+10
+Enter Your Name
+AAA
+Enter Your Age
+23
+Enter Your Name
+BBB
+Type 1 for Crew Member or 2 for Adults
+1
+enter the id no
+123
+enter the trip name
+CHECKING
+Enter Your Age
+43
+Enter Your Name
+CCC
+Type 1 for Crew Member or 2 for Adults
+2
+enter the ph no :
+9877776654
+enter address
+MG ROAD MUMBAI
+1 Data:
+2 Data:
+Name: BBB
+Age: 23
+Member Type: Crew
+Fees: 0
+ trip name: CHECKING
+ id no :123
+3 Data:
+Name: CCC
+Age: 43
+Member Type: Adult
+Fees: 500
+ ph no is : 9.877776654E9
+ address is :MG
+Number of Crew Members: 1
+Number of Adults: 1
+Number of Children: 1
+total collection :750
+---------------------------------------------------------------------------------------------------------------------
+					QUESTION 3 B
+package test;
+import java.util.*;
+public class village {
+	public static void main(String[] args) {
+	Brand ob;
+	Scanner sc=new Scanner(System.in);
+	Map<Integer, Brand> mapValue =new HashMap<Integer, Brand>();
+	System.out.println("Enter the Number of villagers");
+    int num = sc.nextInt();
+    for (int i=1;i<=num;i++)
+    {
+    	mapValue.put(i,new Brand());
+    }
+    for(Map.Entry<Integer, Brand> entry:mapValue.entrySet())
+    {
+    	int key=entry.getKey();
+    	Brand b=entry.getValue();
+    	System.out.println(key+" data:");
+    	System.out.println("name: "+b.name+"age: "+b.age+"gender="+b.gender);
+    }
+    System.out.println(Brand.res());
+	}
+
+}
+package test;
+import java.util.*;
+public class Brand {
+	int age;
+	String name;
+	String gender;
+	int brand;
+	String brands;
+	static int countColgate,countPepsodent,countPatanjali,countDabar ;
+	Scanner scan=new Scanner(System.in);
+	public Brand()
+	{
+		System.out.println("enter the age\n,name\n,gender\n and \n 1 for colgate,2 for peosodent,3 for patanjali, 4 for dabar");
+		this.age=scan.nextInt();
+		this.name=scan.next();
+		this.gender=scan.next();
+		this.brand=scan.nextInt();
+		if(brand==1)
+		{
+			this.brands="Colgate";
+			countColgate++;
+		}
+		else if (brand==2)
+		{
+			this.brands="Pepsodent";
+			countPepsodent++;
+		}
+		else if (brand==3)
+		{
+			this.brands="Patanjali";
+			countPatanjali++;
+		}
+		else 
+		{
+			countDabar++;
+		}
+	}
+	public static String res()
+	{
+		if(countColgate>countDabar && countColgate>countPatanjali && countColgate>countPepsodent)
+			return "most used is colgate";
+		else if(countDabar>countColgate && countDabar>countPatanjali && countDabar>countPepsodent)
+			return "most used is dabar";
+		else if(countPatanjali>countColgate && countPatanjali>countDabar && countPatanjali>countPepsodent)
+			return "most used is patanjali";
+		else 
+			return "most used is pepsodent";
+	}
+
+}
+					TEST CASES
+
+Enter the Number of villagers
+3
+enter the age
+,name
+,gender
+ and 
+ 1 for colgate,2 for peosodent,3 for patanjali, 4 for dabar
+22
+AA
+F
+2
+enter the age
+,name
+,gender
+ and 
+ 1 for colgate,2 for peosodent,3 for patanjali, 4 for dabar
+33
+BB
+M
+2
+enter the age
+,name
+,gender
+ and 
+ 1 for colgate,2 for peosodent,3 for patanjali, 4 for dabar
+28
+CC
+M
+4
+1 data:
+name: AAage: 22gender=F
+2 data:
+name: BBage: 33gender=M
+3 data:
+name: CCage: 28gender=M
+most used is pepsodent
+----------------------------------------------------------------------------------------------------------------------

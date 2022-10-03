@@ -1,0 +1,173 @@
+------------------------------------------------------------------------------------------------------------------
+	
+						Question 2 
+package test;
+import java.util.*;
+public class Golf_club {
+
+
+
+	   public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        
+	        System.out.println("what membership you want 1 for regular 2 for gold 3 for silver : ");
+	        String memebership_type=sc.nextLine();
+	        System.out.println("number of months you want the membership for : ");
+	        int months=sc.nextInt();
+	        
+	        RegularMemeber rm ;
+	        
+	        switch (memebership_type) {
+	        case "1":
+	            rm= new RegularMemeber(months);
+	            rm.show_bill();
+	            break;
+	        case "2":
+	            rm = new GoldMemeber(months);
+	            rm.show_bill();
+	            break;
+	        case "3":
+	            rm = new SilverMemeber(months);
+	            rm.show_bill();
+	            break;
+	       default:
+	            System.out.println("choose one out of regular/gold/silver");
+	            break;
+	        }
+	   }
+}
+
+
+package test;
+import java.util.*;
+class RegularMemeber {
+    int membership_fee=0;
+    int enrollment_fee=0;
+    int charges_per_month=20000;
+    int months;
+    public RegularMemeber(int months) {
+        super();
+        this.months=months;
+    }
+   public double show_bill() {
+        System.out.println("Bill for regular member : ");
+        System.out.println("Membership Fee :"+this.membership_fee);
+        System.out.println("Enrollment Fee :"+this.enrollment_fee);
+        System.out.println("Charges Per Month : Rs 20,000");
+        int charges = this.months*this.charges_per_month;
+        System.out.println("Total amount : "+charges);
+        return charges;
+    }   
+   
+}
+package test;
+class GoldMemeber extends RegularMemeber{    
+    int membership_fee=90000;
+    int enrollment_fee=10000;
+    int charges_per_month=10000;
+    
+    public GoldMemeber(int months) {
+        super(months);
+    }
+    
+    @Override
+    public double show_bill() {
+        System.out.println("Bill for Gold member : ");
+        System.out.println("Membership Fee :"+this.membership_fee);
+        System.out.println("Enrollment Fee :"+this.enrollment_fee);
+        System.out.println("Charges for 6 Month : 0");
+        System.out.println("post 6 months charges per month : 10000");
+        System.out.println();
+        int charges=0;
+        if(months<=6) {
+        charges = this.membership_fee+this.enrollment_fee;
+        System.out.println("Total amount : "+charges);
+        return charges;
+        }
+        
+        if(months>6)
+        {    
+            charges= this.membership_fee+this.enrollment_fee+((this.months-6)*this.charges_per_month);
+            System.out.println("Total amount : "+charges);
+            return charges;
+        }
+        
+        return charges;
+        
+        
+        
+    }
+    
+}
+
+package test;
+class SilverMemeber extends RegularMemeber{
+    
+    
+    int membership_fee=15000;
+    int enrollment_fee=5000;
+    int charges_per_month=20000;
+
+
+
+   public SilverMemeber(int months) {
+        super(months);
+        // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    public double show_bill() {
+        System.out.println("Bill for Silver member : ");
+        System.out.println("Membership Fee : "+this.membership_fee);
+        System.out.println("Enrollment Fee : "+this.enrollment_fee);
+        System.out.println("Charges for 6 Month : Free");
+        System.out.println("post 6 months charges: 20000");
+        System.out.println(" \n");
+        
+        int charges=0;
+        if(months<=6) {
+            charges=+this.membership_fee+this.enrollment_fee;
+            System.out.println("Total amount : "+charges);
+        }
+        
+        
+        if(months>6)
+        {
+            charges=this.membership_fee+this.enrollment_fee+((this.months-6)*this.charges_per_month);
+            System.out.println("Total amount : "+charges);
+        }
+        
+        return charges;
+    }
+}
+			   			TEST CASES
+what membership you want 1 for regular 2 for gold 3 for silver : 
+1
+number of months you want the membership for : 
+23
+Bill for regular member : 
+Membership Fee :0
+Enrollment Fee :0
+Charges Per Month : Rs 20,000
+Total amount : 460000
+  
+what membership you want 1 for regular 2 for gold 3 for silver : 
+2
+number of months you want the membership for : 
+23
+Bill for Gold member : 
+Membership Fee :90000
+Enrollment Fee :10000
+Charges for 6 Month : 0
+post 6 months charges per month : 10000
+Total amount : 270000
+what membership you want 1 for regular 2 for gold 3 for silver : 
+3
+number of months you want the membership for : 
+23
+Bill for Silver member : 
+Membership Fee : 15000
+Enrollment Fee : 5000
+Charges for 6 Month : Free
+post 6 months charges: 20000
+Total amount : 360000
